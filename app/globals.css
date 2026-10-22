@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-lavender-50 text-plum-soft font-sans antialiased;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-sans font-semibold text-plum-dark;
+  }
+
+  :focus-visible {
+    @apply outline outline-2 outline-offset-2 outline-gold;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    * {
+      animation-duration: .01ms !important;
+      transition-duration: .01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-2.5 text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply btn bg-plum text-white hover:bg-plum-dark;
+  }
+
+  .btn-outline {
+    @apply btn border border-plum text-plum hover:bg-plum hover:text-white;
+  }
+
+  .btn-light {
+    @apply btn border border-white text-white hover:bg-white hover:text-plum;
+  }
+
+  .section-title {
+    @apply relative mb-14 text-center text-3xl font-bold text-plum-dark sm:text-4xl;
+  }
+
+  .section-title::after {
+    content: '';
+    @apply absolute -bottom-4 left-1/2 h-1 w-24 -translate-x-1/2 rounded-full bg-gradient-to-r from-lavender-400 to-plum;
+  }
+
+  .card {
+    @apply overflow-hidden rounded-2xl bg-white shadow-soft transition-all duration-300 hover:-translate-y-1.5;
+  }
+
+  .field {
+    @apply w-full rounded-full border border-lavender-300 bg-white px-4 py-2.5 text-sm placeholder:text-plum-soft/60;
+  }
+
+  .container-x {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+}
+
+.hero-stage {
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+}
+
+.hero-3d {
+  transform-style: preserve-3d;
+  will-change: transform;
+  animation-duration: 14s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.hero-3d-a {
+  animation-name: hero-a;
+}
+
+.hero-3d-b {
+  animation-name: hero-b;
+}
+
+.hero-3d-c {
+  animation-name: hero-c;
+}
+
+@keyframes hero-a {
+  from {
+    transform: scale(1.18) translate3d(2%, 1%, 0) rotateY(4deg) rotateX(1deg);
+  }
+
+  to {
+    transform: scale(1.38) translate3d(-3%, -2%, 40px) rotateY(-4deg) rotateX(-1deg);
+  }
+}
+
+@keyframes hero-b {
+  from {
+    transform: scale(1.4) translate3d(-3%, 2%, 40px) rotateY(-5deg);
+  }
+
+  to {
+    transform: scale(1.18) translate3d(3%, -1%, 0) rotateY(5deg);
+  }
+}
+
+@keyframes hero-c {
+  from {
+    transform: scale(1.2) translate3d(0, 3%, 0) rotateX(3deg) rotateY(3deg);
+  }
+
+  to {
+    transform: scale(1.4) translate3d(0, -3%, 50px) rotateX(-2deg) rotateY(-3deg);
+  }
+}
+
+.hero-orb {
+  animation: hero-float 9s ease-in-out infinite alternate;
+}
+
+@keyframes hero-float {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  to {
+    transform: translate3d(30px, -40px, 0) scale(1.15);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .hero-3d,
+  .hero-orb {
+    animation: none !important;
+    transform: scale(1.1);
+  }
+}
